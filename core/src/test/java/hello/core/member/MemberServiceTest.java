@@ -1,11 +1,26 @@
 package hello.core.member;
 
+import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
+    // 아래처럼 하기보다는 매 테스트마다 데이터를 초기화 해주기 위해 @BeforeEach이용
+    // AppConfig appConfig = new AppConfig();
+    // MemberService memberService = appConfig.memberService();
+
+    MemberService memberService;
+
+    @BeforeEach
+    public void BeforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
+
 
     @Test
     void join() {
@@ -17,6 +32,6 @@ public class MemberServiceTest {
         Member findMember = memberService.findMember(1L);
 
         // then
-        Assertions.assertThat(member).isEqualTo(findMember);
+        assertThat(member).isEqualTo(findMember);
     }
 }

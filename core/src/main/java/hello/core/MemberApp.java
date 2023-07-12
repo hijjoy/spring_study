@@ -8,7 +8,9 @@ import hello.core.member.MemberServiceImpl;
 // main메소드로 test하는 방법
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
         Member member = new Member(1L, "hyewon1", Grade.VIP);
         memberService.join(member);
 

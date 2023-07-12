@@ -12,14 +12,16 @@ import hello.core.order.OrderServiceImpl;
 // main메소드로 test하는 방법
 public class OrderApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "hyewon", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderService.createOrder(memberId, "item1", 10000);
+        Order order = orderService.createOrder(memberId, "item1", 20000);
 
         System.out.println("order = " + order);
     }
